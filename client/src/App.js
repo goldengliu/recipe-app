@@ -1,18 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+
+// pages
+import { Home } from './pages/home';
+import { Auth } from './pages/auth';
+import { CreateRecipe } from './pages/create-recipe';
+import { SavedRecipes} from './pages/saved-recipes';
+
+// components 
+import { Navbar } from "./components/navbar";
 
 function App() {
   return (
     <div className="App">
-      <div className="input-form">
-        <form>
-          <label></label> 
-          <input type="text" placeholder="search field"></input>
-        </form>
-      </div>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element = {<Home />} />
+          <Route path="/auth" element = {<Auth />} />
+          <Route path="/create-recipe" element = {<CreateRecipe />} />
+          <Route path="/saved-recipe" element = {<SavedRecipes />} />
+        </Routes>
+      </Router>
+
+
     </div>
   );
 }
