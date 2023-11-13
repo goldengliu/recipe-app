@@ -14,4 +14,4 @@ app.use("/auth", userRouter);
 mongoose.connect(
     "mongodb+srv://goldengliu:GYUZFU40CzVWKg1n@cluster.x1evija.mongodb.net/Cluster?retryWrites=true&w=majority"
 );
-app.listen(3002, () => console.log("Server Started!"));
+app.listen(3000, () => console.log("Server Started!"));
