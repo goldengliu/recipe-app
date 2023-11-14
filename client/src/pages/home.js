@@ -55,6 +55,7 @@ export const Home = () => {
           {recipes.map((recipe) => (
               <li key={recipe._id}>
                 <div>
+                  <img src={recipe.imageUrl} alt={recipe.name} loading={'lazy'} />
                   <h2>{recipe.name}</h2>
                   <button
                       onClick={() => saveRecipe(recipe._id)}
@@ -65,6 +66,7 @@ export const Home = () => {
                 </div>
 
                 <div className="ingredients">
+                  <h5>Ingredients:</h5>
                   {recipe.ingredients.map((ingredient) => (
                       <p>
                          - {ingredient}
@@ -73,10 +75,10 @@ export const Home = () => {
                 </div>
 
                 <div className="instructions">
+                  <h5>Directions:</h5>
                   <p>{recipe.instructions}</p>
                 </div>
-                <img src={recipe.imageUrl} alt={recipe.name} loading={'lazy'} />
-                <p>Cooking Time: {recipe.cookingTime} minutes</p>
+                <h5>Cooking Time: {recipe.cookingTime} minutes</h5>
               </li>
           ))}
         </ul>
