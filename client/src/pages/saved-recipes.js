@@ -3,58 +3,54 @@ import { useGetUserID } from "../hooks/useGetUserID";
 import axios from "axios";
 
 export const SavedRecipes = () => {
-    const [savedRecipes, setSavedRecipes] = useState([]);
-    const userID = useGetUserID();
+  const [savedRecipes, setSavedRecipes] = useState([]);
+  const userID = useGetUserID();
 
-    // Initial data fetching
-    useEffect(() => {
-        const fetchSavedRecipes = async () => {
-            try {
-                const response = await axios.get(
-                    `http://localhost:3001/recipes/savedRecipes/${userID}`
-                );
-                setSavedRecipes(response.data.savedRecipes);
-            } catch (err) {
-                console.log(err);
-            }
-        };
+  // initial data fetching
+  useEffect(() => {
+    const fetchSavedRecipes = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/recipes/savedRecipes/${userID}`
+        );
+        setSavedRecipes(response.data.savedRecipes);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-        fetchSavedRecipes();
-    }, [userID]); // Include userID in the dependency array
+    fetchSavedRecipes();
+  }, [userID]);
 
-    // Additional effects that depend on userID can be added here
-    useEffect(() => {
-        // Your additional logic here, if needed
-    }, [userID]);
+  useEffect(() => {
+    // additional useEffect logic if needed
+  }, [userID]);
 
-    return (
-        <div>
-            <h1>Saved Recipes</h1>
-            <ul>
-                {savedRecipes.map((recipe) => (
-                    <li key={recipe._id}>
-                        <div>
-                            <h2>{recipe.name}</h2>
-                        </div>
-                        <div className="ingredients">
+  return (
+    <div>
+      <h1>Saved Recipes</h1>
+      <ul>
+        {savedRecipes.map((recipe) => (
+          <li key={recipe._id}>
+            <img src={recipe.imageUrl} alt={recipe.name} />
+            <h2>{recipe.name}</h2>
+            <div className="ingredients">
+              <h5>Ingredients:</h5>
+              {recipe.ingredients.map((ingredient, index) => (
+                <p key={index}>
+                  - {ingredient}
+                </p>
+              ))}
+            </div>
 
-                                {recipe.ingredients.map((ingredient) => (
-                                    <p>
-                                        {ingredient}
-                                    </p>
-                                ))}
-
-
-                        </div>
-
-
-                        <p>{recipe.instructions}</p>
-                        <p>{recipe.description}</p>
-                        <img src={recipe.imageUrl} alt={recipe.name} />
-                        <p>Cooking Time: {recipe.cookingTime} minutes</p>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+            <div className="instructions">
+              <h5>Directions:</h5>
+              <p>{recipe.instructions}</p>
+            </div>
+            <h5>Cooking Time: {recipe.cookingTime} minutes</h5>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };

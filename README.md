@@ -10,7 +10,7 @@ This React application allows users to explore, create, and save their favorite 
 - **User Authentication**: Securely log in and register to personalize your experience.
 
 
-### Installation
+## Installation
 
 1. Clone the repository
 2. Navigate to the project folder
