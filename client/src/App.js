@@ -6,6 +6,12 @@ import { CreateRecipe } from "./pages/create-recipe";
 import { Home } from "./pages/home";
 import { SavedRecipes } from "./pages/saved-recipes";
 
+useEffect(() => {
+  fetch("https://recipe-app-kace.onrender.com")
+    .then((res) => res.json())
+    .then((data) => setMessage(data.message));
+},[]);
+
 function App() {
   return (
     <div className="App">
