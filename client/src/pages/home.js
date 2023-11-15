@@ -63,10 +63,19 @@ export const Home = () => {
                     {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
                   </button>
                 </div>
+
+                <div className="ingredients">
+                  {recipe.ingredients.map((ingredient) => (
+                      <p>
+                         - {ingredient}
+                      </p>
+                  ))}
+                </div>
+
                 <div className="instructions">
                   <p>{recipe.instructions}</p>
                 </div>
-                <img src={recipe.imageUrl} alt={recipe.name} />
+                <img src={recipe.imageUrl} alt={recipe.name} loading={'lazy'} />
                 <p>Cooking Time: {recipe.cookingTime} minutes</p>
               </li>
           ))}

@@ -36,6 +36,19 @@ export const SavedRecipes = () => {
                         <div>
                             <h2>{recipe.name}</h2>
                         </div>
+                        <div className="ingredients">
+
+                                {recipe.ingredients.map((ingredient) => (
+                                    <p>
+                                        {ingredient}
+                                    </p>
+                                ))}
+
+
+                        </div>
+
+
+                        <p>{recipe.instructions}</p>
                         <p>{recipe.description}</p>
                         <img src={recipe.imageUrl} alt={recipe.name} />
                         <p>Cooking Time: {recipe.cookingTime} minutes</p>

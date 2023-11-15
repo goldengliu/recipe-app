@@ -5,23 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c437d96-1876-4830-bd6a-f132e791d970" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/make-dir/node_modules/.bin/semver.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/make-dir/node_modules/.bin/semver.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/touch/node_modules/.bin/nopt.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/touch/node_modules/.bin/nopt.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/create-recipe.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/create-recipe.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/saved-recipes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/saved-recipes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/bcrypt/lib/binding/napi-v3/bcrypt_lib.node" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/bcrypt/lib/binding/napi-v3/bcrypt_lib.node" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/make-dir/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/make-dir/node_modules/.bin/semver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/touch/node_modules/.bin/nopt" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/touch/node_modules/.bin/nopt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/Users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/recipes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/recipes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1700000125233</updated>
       <workItem from="1700000126481" duration="2659000" />
-      <workItem from="1700009371494" duration="5614000" />
+      <workItem from="1700009371494" duration="6540000" />
     </task>
     <servers />
   </component>
