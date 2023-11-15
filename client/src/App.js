@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./components/navbar";
@@ -7,13 +7,11 @@ import { CreateRecipe } from "./pages/create-recipe";
 import { Home } from "./pages/home";
 import { SavedRecipes } from "./pages/saved-recipes";
 
-useEffect(() => {
-  fetch("https://recipe-app-kace.onrender.com")
-    .then((res) => res.json())
-    .then((data) => setMessage(data.message));
-},[]);
-
 function App() {
+  useEffect(() => {
+    fetch("https://recipe-app-kace.onrender.com")
+      .then((res) => res.json())
+  },[]);
   return (
     <div className="App">
       <Router>
