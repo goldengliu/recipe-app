@@ -21,7 +21,7 @@ export const Home = () => {
     const fetchSavedRecipes = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
+            `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
         );
         setSavedRecipes(response.data.savedRecipes);
       } catch (err) {
@@ -31,7 +31,8 @@ export const Home = () => {
 
     fetchRecipes();
     fetchSavedRecipes();
-  }, []);
+  }, [userID]); // Add userID to the dependency array
+
 
   const saveRecipe = async (recipeID) => {
     try {
@@ -48,28 +49,28 @@ export const Home = () => {
   const isRecipeSaved = (id) => savedRecipes.includes(id);
 
   return (
-    <div>
-      <h1>Recipes</h1>
-      <ul>
-        {recipes.map((recipe) => (
-          <li key={recipe._id}>
-            <div>
-              <h2>{recipe.name}</h2>
-              <button
-                onClick={() => saveRecipe(recipe._id)}
-                disabled={isRecipeSaved(recipe._id)}
-              >
-                {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
-              </button>
-            </div>
-            <div className="instructions">
-              <p>{recipe.instructions}</p>
-            </div>
-            <img src={recipe.imageUrl} alt={recipe.name} />
-            <p>Cooking Time: {recipe.cookingTime} minutes</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <div>
+        <h1>Recipes</h1>
+        <ul>
+          {recipes.map((recipe) => (
+              <li key={recipe._id}>
+                <div>
+                  <h2>{recipe.name}</h2>
+                  <button
+                      onClick={() => saveRecipe(recipe._id)}
+                      disabled={isRecipeSaved(recipe._id)}
+                  >
+                    {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
+                  </button>
+                </div>
+                <div className="instructions">
+                  <p>{recipe.instructions}</p>
+                </div>
+                <img src={recipe.imageUrl} alt={recipe.name} />
+                <p>Cooking Time: {recipe.cookingTime} minutes</p>
+              </li>
+          ))}
+        </ul>
+      </div>
   );
 };

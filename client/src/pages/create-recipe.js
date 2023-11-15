@@ -100,6 +100,7 @@ export const CreateRecipe = () => {
           name="imageUrl"
           value={recipe.imageUrl}
           onChange={handleChange}
+          required={false}
         />
         <label htmlFor="cookingTime">Cooking Time (minutes)</label>
         <input
@@ -108,6 +109,7 @@ export const CreateRecipe = () => {
           name="cookingTime"
           value={recipe.cookingTime}
           onChange={handleChange}
+          required={false}
         />
         <button type="submit">Create Recipe</button>
       </form>

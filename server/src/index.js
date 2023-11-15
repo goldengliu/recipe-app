@@ -12,12 +12,18 @@ app.use(cors());
 app.use("/auth", userRouter);
 app.use("/recipes", recipesRouter);
 
-mongoose.connect(
-  "mongodb+srv://user123:Password123Tech@test.m6cb1nv.mongodb.net/recipetest?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+// Your MongoDB connection string
+const connectionString = 'mongodb+srv://goldengliu:GYUZFU40CzVWKg1n@cluster.x1evija.mongodb.net/Cluster?retryWrites=true&w=majority';
 
-app.listen(3001, () => console.log("Server started"));
+// Connect to MongoDB (no need for useNewUrlParser and useUnifiedTopology in recent Mongoose versions)
+mongoose.connect(connectionString)
+    .then(() => {
+        console.log('MongoDB connected');
+        // Your server start or additional setup logic goes here
+    })
+    .catch((error) => {
+        console.error('MongoDB connection error:', error);
+    });
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
