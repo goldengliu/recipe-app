@@ -5,7 +5,7 @@ import axios from "axios";
 export const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
-
+  const [searchQuery, setSearchQuery] = useState("");
   const userID = useGetUserID();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export const Home = () => {
     const fetchSavedRecipes = async () => {
       try {
         const response = await axios.get(
-            `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
+          `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
         );
         setSavedRecipes(response.data.savedRecipes);
       } catch (err) {
@@ -31,8 +31,20 @@ export const Home = () => {
 
     fetchRecipes();
     fetchSavedRecipes();
-  }, [userID]); // Add userID to the dependency array
+  }, [userID]);
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredRecipes = recipes.filter((recipe) => {
+    const lowerCaseQuery = searchQuery.toLowerCase();
+    const inName = recipe.name.toLowerCase().includes(lowerCaseQuery);
+    const inIngredients = recipe.ingredients.some((ingredient) =>
+      ingredient.toLowerCase().includes(lowerCaseQuery)
+    );
+    return inName || inIngredients;
+  });
 
   const saveRecipe = async (recipeID) => {
     try {
@@ -49,39 +61,67 @@ export const Home = () => {
   const isRecipeSaved = (id) => savedRecipes.includes(id);
 
   return (
-      <div>
-        <h1>Recipes</h1>
+    <div>
+      <div style={{ textAlign: 'left', margin: '10px' }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <label htmlFor="name" hidden>Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Search For Recipes"
+            onChange={handleSearchChange}
+            value={searchQuery}
+          />
+        </form>
+      </div>
+      <h1>Recipes</h1>
+
+      {filteredRecipes.length === 0 ? (
+        <div>
+          <p>No recipes found.</p>
+        </div>
+      ) : (
         <ul>
-          {recipes.map((recipe) => (
-              <li key={recipe._id}>
-                <div>
-                  <img src={recipe.imageUrl} alt={recipe.name} loading={'lazy'} />
-                  <h2>{recipe.name}</h2>
-                  <button
-                      onClick={() => saveRecipe(recipe._id)}
-                      disabled={isRecipeSaved(recipe._id)}
-                  >
-                    {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
-                  </button>
-                </div>
+          {filteredRecipes.map((recipe) => (
+            <li key={recipe._id}>
+              <div>
+                <h2>{recipe.name}</h2>
+
+                <button
+                  onClick={() => saveRecipe(recipe._id)}
+                  disabled={isRecipeSaved(recipe._id)}
+                >
+                  {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
+                </button>
 
                 <div className="ingredients">
-                  <h5>Ingredients:</h5>
-                  {recipe.ingredients.map((ingredient) => (
-                      <p>
-                         - {ingredient}
-                      </p>
-                  ))}
+                  {recipe.ingredients.length > 1 ? (
+                    recipe.ingredients.map((ingredient, index) => (
+                      <p key={index}>- {ingredient}</p>
+                    ))
+                  ) : (
+                    <p>No ingredients available</p>
+                  )}
                 </div>
 
-                <div className="instructions">
-                  <h5>Directions:</h5>
-                  <p>{recipe.instructions}</p>
-                </div>
-                <h5>Cooking Time: {recipe.cookingTime} minutes</h5>
-              </li>
+                {recipe.instructions !== "" ? (
+                  <div className="instructions">
+                    <p>{recipe.instructions}</p>
+                  </div>
+                ) : null}
+
+                <img src={recipe.imageUrl} alt={recipe.name} loading="lazy" />
+                <p>Cooking Time: {recipe.cookingTime} minutes</p>
+              </div>
+            </li>
           ))}
         </ul>
-      </div>
+      )}
+    </div>
   );
 };
